@@ -1,0 +1,49 @@
+.App{
+  position: relative;
+  text-align: center;
+}
+
+.frame {
+  height: 500px;
+  width: 50%;
+}
+.header{
+    position: absolute;
+    color: #0C6AE0;
+    margin-left: 5px;
+    top: 3px;
+    font-size: 20px;
+}
+
+.footer{
+    position: absolute;
+    bottom: 25px;
+    font-size: 20px;
+    color: red;
+    left: 50%;
+}
+
+.setting-content {
+    height: 75px;
+    width: 50px;
+    background: #FFFFFF;
+    position: absolute;
+    left: 20px;
+}
+
+.setting-close {
+    position: absolute;
+    color: #000000;
+    margin-left: 10px;
+    top: 3px;
+    font-size: 12px;
+}
+
+.showVideo {
+    color: #FFFFFF;
+    background-color: #8e8eb5;
+    width: 5%;
+    margin-left: 45%;
+    padding: 3px;
+    cursor: pointer;
+}
