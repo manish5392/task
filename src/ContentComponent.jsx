@@ -4,52 +4,78 @@ import './style.css';
 export default class ContentComponent extends Component {
 
     state = {
-        showStreaming: false,
-        showSetting: false,
+        noOfRows: [],
+        noOfCols: [],
+        showBlocks: false,
     }
 
     render() {
-        const { showStreaming, showSetting } = this.state;
-
+        const { noOfRows, noOfCols, showBlocks } = this.state;
+        console.log(noOfRows);
         return (
             <div className="App">
-                {
-                    !showStreaming &&
-                    <div className="showVideo" onClick={this.showVideo}>Show Video</div>
-                }
-                {
-                    showStreaming &&
+                <div className="block-container">
+                    {
+                        showBlocks &&
+                            noOfRows.map((eachRow, ind) => {
+                            return (
+                                <div>{eachRow}</div>
+                            )
+                            })
+                    }
+                </div>
+                <div className="input-container">
+                    <h3>Block Config</h3>
                     <div>
-                        <div className="header fas fa-cog" onClick={this.showSetting} title="Settings">
-                            {
-                                showSetting &&
-                                <div className="setting-content">
-                                    <div className="setting-close fas fa-times" onClick={(e) => this.hideSetting(e)} title="Close Settings"></div>
-                                </div>
-                            }
-                        </div>
-                        <div className="footer fas fa-phone" onClick={this.hideVideo} title="Close Video"></div>
-                        <iframe className="frame" src="https://www.youtube.com/embed/YTJg8q9Q940" title="Video Stream"></iframe>
+                        <span>Row</span>
+                        <input type="text" onChange={this.onRowChange}/>
                     </div>
-                }
+                    <div>
+                        <span>Column</span>
+                        <input type="text" onChange={this.onColChange}/>
+                    </div>
+                    <div>
+                        <button onClick={this.onSubmit}>Generate</button>
+                        <button onClick={this.onClear}>Clear</button>
+                    </div>
+                    <h3>Selected Block</h3>
+                </div>
             </div>
         )
     }
 
-    showVideo = () => {
-        this.setState({ showStreaming: true });
+    onSubmit = () => {
+        this.setState({ showBlocks: true });
     }
 
-    hideVideo = () => {
-        this.setState({ showStreaming: false });
+    onClear = () => {
+
     }
 
-    showSetting = () => {
-        this.setState({ showSetting: true });
+    onRowChange = event => {
+        const tempArr = [];
+        for(let i = 1; i <= event.target.value; i++) {
+            tempArr.push(i);
+        }
+        console.log(tempArr);
+        this.setState({ noOfRows: tempArr });
     }
 
-    hideSetting = e => {
-        e.stopPropagation();
-        this.setState({ showSetting: false });
+    onColChange = event => {
+
+        const tempArr = [];
+        for(let i = 1; i <= event.target.value; i++) {
+            tempArr.push(i);
+        }
+        this.setState({ noOfCols: tempArr });
     }
+
+    /*showBlock = () => {
+        for(let i = 1; i <= this.state.noOfRows; i++) {
+            return (
+                <div>{i}</div>
+            )
+        }
+    }
+*/
 }
